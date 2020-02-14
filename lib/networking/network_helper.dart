@@ -13,8 +13,6 @@ class NetworkHelper {
   Future<List<SampleImage>> getImagesList() async{
     http.Response response = await http.get('$url/photos?per_page=30', headers: _headers);
     if(response.statusCode == 200){
-
-      print(response.body);
       final List imagesList = json.decode(utf8.decode(response.bodyBytes));
       return imagesList.map<SampleImage>((json) => SampleImage.fromJson(json)).toList();
     }else{
